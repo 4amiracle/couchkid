@@ -72,17 +72,22 @@ layout: null
     .featured-image {
       width: 100%;
       max-width: 550px;
-      height: 400px;
       overflow: hidden;
+      border-radius: 4px;
     }
 
     .featured-image img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      transition: object-position 0.4s ease, transform 0.4s ease;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.15)) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1));
+      transition: transform 0.5s ease, transform-origin 0.5s ease, filter 0.3s ease;
       transform: scale(1);
+      transform-origin: center center;
+    }
+
+    .featured-image img:hover {
+      filter: drop-shadow(0 12px 32px rgba(0, 0, 0, 0.2)) drop-shadow(0 4px 12px rgba(0, 0, 0, 0.12));
     }
 
     .featured-image img.hidden {
@@ -90,13 +95,13 @@ layout: null
     }
 
     .featured-image img.zoom-tshirt {
-      object-position: 25% center;
-      transform: scale(1.4);
+      transform: scale(1.8);
+      transform-origin: 30% 50%;
     }
 
     .featured-image img.zoom-hoodie {
-      object-position: 75% center;
-      transform: scale(1.4);
+      transform: scale(1.8);
+      transform-origin: 72% 50%;
     }
 
     .color-thumbs {
@@ -114,8 +119,8 @@ layout: null
       width: 80px;
       height: auto;
       border: 3px solid transparent;
-      transition: border-color 0.2s ease;
       opacity: 0.5;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
       transition: opacity 0.2s ease, border-color 0.2s ease;
     }
 
