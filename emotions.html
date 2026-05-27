@@ -1,0 +1,467 @@
+---
+layout: null
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emotions — Couch Kid</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;700&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #fff;
+      font-family: "Space Grotesk", sans-serif;
+      color: #111;
+      min-height: 100vh;
+      padding: 6rem 2rem 3rem;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      padding: 1.5rem 2.5rem;
+      z-index: 10;
+      background: #fff;
+    }
+
+    nav a {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 0.875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      color: #111;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: #555;
+    }
+
+    .page-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .page-header h1 {
+      font-family: "Figtree", sans-serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .emotion-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .emotion-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      cursor: pointer;
+      padding: 1.5rem;
+      border: 2px solid #111;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+
+    .emotion-card:hover {
+      background: #f5f5f5;
+      transform: translateY(-2px);
+    }
+
+    .emotion-card.active {
+      background: #111;
+      color: #fff;
+    }
+
+    .emotion-card.active .emotion-label {
+      color: #fff;
+    }
+
+    .emotion-card.active svg {
+      stroke: #fff;
+    }
+
+    .emotion-label {
+      font-family: "Figtree", sans-serif;
+      font-size: 1.125rem;
+      font-weight: 700;
+      text-transform: lowercase;
+      letter-spacing: 0.02em;
+      color: #111;
+    }
+
+    .emotion-icon {
+      width: 150px;
+      height: 100px;
+    }
+
+    .emotion-icon svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .emotion-content {
+      display: none;
+      max-width: 600px;
+      margin: 3rem auto 0;
+      text-align: center;
+      padding: 2rem;
+      border-top: 2px solid #111;
+    }
+
+    .emotion-content.visible {
+      display: block;
+    }
+
+    .emotion-content h2 {
+      font-family: "Figtree", sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .emotion-content p {
+      font-family: "Figtree", sans-serif;
+      font-weight: 400;
+      color: #2563EB;
+      font-size: 1.125rem;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 480px) {
+      nav {
+        padding: 1rem 1.25rem;
+      }
+
+      body {
+        padding-top: 5rem;
+      }
+
+      .emotion-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+
+      .emotion-card {
+        padding: 1rem;
+      }
+
+      .emotion-icon {
+        width: 120px;
+        height: 80px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="{{ '/' | relative_url }}">Home</a>
+    <a href="{{ '/story' | relative_url }}">Story</a>
+  </nav>
+
+  <div class="page-header">
+    <h1>emotions.</h1>
+  </div>
+
+  <div class="emotion-grid">
+    <div class="emotion-card" data-emotion="anxiety">
+      <span class="emotion-label">anxiety</span>
+      <div class="emotion-icon">
+        <svg viewBox="0 0 150 100" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Couch back -->
+          <rect x="20" y="24" width="110" height="42" rx="3"/>
+          <!-- Left armrest -->
+          <rect x="14" y="34" width="14" height="34" rx="5"/>
+          <!-- Right armrest -->
+          <rect x="122" y="34" width="14" height="34" rx="5"/>
+          <!-- Legs -->
+          <line x1="28" y1="68" x2="28" y2="78"/>
+          <line x1="42" y1="68" x2="42" y2="78"/>
+          <line x1="108" y1="68" x2="108" y2="78"/>
+          <line x1="122" y1="68" x2="122" y2="78"/>
+          <!-- Kid head resting on left armrest -->
+          <ellipse cx="40" cy="38" rx="9" ry="10"/>
+          <!-- Curly hair -->
+          <path d="M31 33 Q28 26 33 23 Q37 20 40 25 Q43 20 47 23 Q52 26 49 33"/>
+          <path d="M30 37 Q25 33 28 29"/>
+          <path d="M30 42 Q25 39 27 35"/>
+          <path d="M49 33 Q53 30 51 36"/>
+          <!-- V-neck -->
+          <path d="M47 45 L50 51 L53 45"/>
+          <!-- Body stretched across couch -->
+          <line x1="50" y1="48" x2="108" y2="57"/>
+          <line x1="50" y1="53" x2="108" y2="62"/>
+          <!-- Arms on chest -->
+          <path d="M58 50 L78 54"/>
+          <path d="M56 54 L74 57"/>
+          <!-- Face: wide eyes, wavy mouth -->
+          <circle cx="36" cy="36" r="1.5" fill="currentColor" stroke="none"/>
+          <circle cx="44" cy="36" r="1.5" fill="currentColor" stroke="none"/>
+          <path d="M35 42 Q37 40 39 42 Q41 40 43 42"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="emotion-card" data-emotion="depression">
+      <span class="emotion-label">depression</span>
+      <div class="emotion-icon">
+        <svg viewBox="0 0 150 100" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="20" y="24" width="110" height="42" rx="3"/>
+          <rect x="14" y="34" width="14" height="34" rx="5"/>
+          <rect x="122" y="34" width="14" height="34" rx="5"/>
+          <line x1="28" y1="68" x2="28" y2="78"/>
+          <line x1="42" y1="68" x2="42" y2="78"/>
+          <line x1="108" y1="68" x2="108" y2="78"/>
+          <line x1="122" y1="68" x2="122" y2="78"/>
+          <ellipse cx="40" cy="38" rx="9" ry="10"/>
+          <path d="M31 33 Q28 26 33 23 Q37 20 40 25 Q43 20 47 23 Q52 26 49 33"/>
+          <path d="M30 37 Q25 33 28 29"/>
+          <path d="M30 42 Q25 39 27 35"/>
+          <path d="M49 33 Q53 30 51 36"/>
+          <path d="M47 45 L50 51 L53 45"/>
+          <line x1="50" y1="48" x2="108" y2="57"/>
+          <line x1="50" y1="53" x2="108" y2="62"/>
+          <path d="M58 50 L78 54"/>
+          <path d="M56 54 L74 57"/>
+          <!-- Face: closed/downcast eyes, frown -->
+          <line x1="34" y1="36" x2="38" y2="37"/>
+          <line x1="42" y1="37" x2="46" y2="36"/>
+          <path d="M36 43 Q40 41 44 43"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="emotion-card" data-emotion="anger">
+      <span class="emotion-label">anger</span>
+      <div class="emotion-icon">
+        <svg viewBox="0 0 150 100" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="20" y="24" width="110" height="42" rx="3"/>
+          <rect x="14" y="34" width="14" height="34" rx="5"/>
+          <rect x="122" y="34" width="14" height="34" rx="5"/>
+          <line x1="28" y1="68" x2="28" y2="78"/>
+          <line x1="42" y1="68" x2="42" y2="78"/>
+          <line x1="108" y1="68" x2="108" y2="78"/>
+          <line x1="122" y1="68" x2="122" y2="78"/>
+          <ellipse cx="40" cy="38" rx="9" ry="10"/>
+          <path d="M31 33 Q28 26 33 23 Q37 20 40 25 Q43 20 47 23 Q52 26 49 33"/>
+          <path d="M30 37 Q25 33 28 29"/>
+          <path d="M30 42 Q25 39 27 35"/>
+          <path d="M49 33 Q53 30 51 36"/>
+          <path d="M47 45 L50 51 L53 45"/>
+          <line x1="50" y1="48" x2="108" y2="57"/>
+          <line x1="50" y1="53" x2="108" y2="62"/>
+          <path d="M58 50 L78 54"/>
+          <path d="M56 54 L74 57"/>
+          <!-- Face: angry V-brows, dot eyes, flat mouth -->
+          <line x1="33" y1="33" x2="37" y2="35"/>
+          <line x1="47" y1="33" x2="43" y2="35"/>
+          <circle cx="36" cy="37" r="1" fill="currentColor" stroke="none"/>
+          <circle cx="44" cy="37" r="1" fill="currentColor" stroke="none"/>
+          <line x1="36" y1="42" x2="44" y2="42"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="emotion-card" data-emotion="sadness">
+      <span class="emotion-label">sadness</span>
+      <div class="emotion-icon">
+        <svg viewBox="0 0 150 100" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="20" y="24" width="110" height="42" rx="3"/>
+          <rect x="14" y="34" width="14" height="34" rx="5"/>
+          <rect x="122" y="34" width="14" height="34" rx="5"/>
+          <line x1="28" y1="68" x2="28" y2="78"/>
+          <line x1="42" y1="68" x2="42" y2="78"/>
+          <line x1="108" y1="68" x2="108" y2="78"/>
+          <line x1="122" y1="68" x2="122" y2="78"/>
+          <ellipse cx="40" cy="38" rx="9" ry="10"/>
+          <path d="M31 33 Q28 26 33 23 Q37 20 40 25 Q43 20 47 23 Q52 26 49 33"/>
+          <path d="M30 37 Q25 33 28 29"/>
+          <path d="M30 42 Q25 39 27 35"/>
+          <path d="M49 33 Q53 30 51 36"/>
+          <path d="M47 45 L50 51 L53 45"/>
+          <line x1="50" y1="48" x2="108" y2="57"/>
+          <line x1="50" y1="53" x2="108" y2="62"/>
+          <path d="M58 50 L78 54"/>
+          <path d="M56 54 L74 57"/>
+          <!-- Face: dot eyes, tear drop, gentle frown -->
+          <circle cx="36" cy="36" r="1" fill="currentColor" stroke="none"/>
+          <circle cx="44" cy="36" r="1" fill="currentColor" stroke="none"/>
+          <path d="M36 38 L35 41"/>
+          <path d="M36 43 Q40 41 44 43"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="emotion-card" data-emotion="happiness">
+      <span class="emotion-label">happiness</span>
+      <div class="emotion-icon">
+        <svg viewBox="0 0 150 100" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="20" y="24" width="110" height="42" rx="3"/>
+          <rect x="14" y="34" width="14" height="34" rx="5"/>
+          <rect x="122" y="34" width="14" height="34" rx="5"/>
+          <line x1="28" y1="68" x2="28" y2="78"/>
+          <line x1="42" y1="68" x2="42" y2="78"/>
+          <line x1="108" y1="68" x2="108" y2="78"/>
+          <line x1="122" y1="68" x2="122" y2="78"/>
+          <ellipse cx="40" cy="38" rx="9" ry="10"/>
+          <path d="M31 33 Q28 26 33 23 Q37 20 40 25 Q43 20 47 23 Q52 26 49 33"/>
+          <path d="M30 37 Q25 33 28 29"/>
+          <path d="M30 42 Q25 39 27 35"/>
+          <path d="M49 33 Q53 30 51 36"/>
+          <path d="M47 45 L50 51 L53 45"/>
+          <line x1="50" y1="48" x2="108" y2="57"/>
+          <line x1="50" y1="53" x2="108" y2="62"/>
+          <path d="M58 50 L78 54"/>
+          <path d="M56 54 L74 57"/>
+          <!-- Face: bright eyes, big smile -->
+          <circle cx="36" cy="36" r="1.5" fill="currentColor" stroke="none"/>
+          <circle cx="44" cy="36" r="1.5" fill="currentColor" stroke="none"/>
+          <path d="M35 41 Q40 46 45 41"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="emotion-card" data-emotion="worry">
+      <span class="emotion-label">worry</span>
+      <div class="emotion-icon">
+        <svg viewBox="0 0 150 100" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="20" y="24" width="110" height="42" rx="3"/>
+          <rect x="14" y="34" width="14" height="34" rx="5"/>
+          <rect x="122" y="34" width="14" height="34" rx="5"/>
+          <line x1="28" y1="68" x2="28" y2="78"/>
+          <line x1="42" y1="68" x2="42" y2="78"/>
+          <line x1="108" y1="68" x2="108" y2="78"/>
+          <line x1="122" y1="68" x2="122" y2="78"/>
+          <ellipse cx="40" cy="38" rx="9" ry="10"/>
+          <path d="M31 33 Q28 26 33 23 Q37 20 40 25 Q43 20 47 23 Q52 26 49 33"/>
+          <path d="M30 37 Q25 33 28 29"/>
+          <path d="M30 42 Q25 39 27 35"/>
+          <path d="M49 33 Q53 30 51 36"/>
+          <path d="M47 45 L50 51 L53 45"/>
+          <line x1="50" y1="48" x2="108" y2="57"/>
+          <line x1="50" y1="53" x2="108" y2="62"/>
+          <path d="M58 50 L78 54"/>
+          <path d="M56 54 L74 57"/>
+          <!-- Face: raised brows, small eyes, O mouth -->
+          <path d="M34 33 Q36 31 38 33"/>
+          <path d="M42 33 Q44 31 46 33"/>
+          <circle cx="36" cy="36" r="1" fill="currentColor" stroke="none"/>
+          <circle cx="44" cy="36" r="1" fill="currentColor" stroke="none"/>
+          <ellipse cx="40" cy="42" rx="2" ry="1.5"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="emotion-card" data-emotion="love">
+      <span class="emotion-label">love</span>
+      <div class="emotion-icon">
+        <svg viewBox="0 0 150 100" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="20" y="24" width="110" height="42" rx="3"/>
+          <rect x="14" y="34" width="14" height="34" rx="5"/>
+          <rect x="122" y="34" width="14" height="34" rx="5"/>
+          <line x1="28" y1="68" x2="28" y2="78"/>
+          <line x1="42" y1="68" x2="42" y2="78"/>
+          <line x1="108" y1="68" x2="108" y2="78"/>
+          <line x1="122" y1="68" x2="122" y2="78"/>
+          <ellipse cx="40" cy="38" rx="9" ry="10"/>
+          <path d="M31 33 Q28 26 33 23 Q37 20 40 25 Q43 20 47 23 Q52 26 49 33"/>
+          <path d="M30 37 Q25 33 28 29"/>
+          <path d="M30 42 Q25 39 27 35"/>
+          <path d="M49 33 Q53 30 51 36"/>
+          <path d="M47 45 L50 51 L53 45"/>
+          <line x1="50" y1="48" x2="108" y2="57"/>
+          <line x1="50" y1="53" x2="108" y2="62"/>
+          <path d="M58 50 L78 54"/>
+          <path d="M56 54 L74 57"/>
+          <!-- Face: heart eyes, gentle smile -->
+          <path d="M34 35 L35.5 33.5 Q36.5 32.5 37.5 33.5 Q38 32.5 38.5 33.5 L37 36 Z" fill="currentColor" stroke="none"/>
+          <path d="M42 35 L43.5 33.5 Q44.5 32.5 45.5 33.5 Q46 32.5 46.5 33.5 L45 36 Z" fill="currentColor" stroke="none"/>
+          <path d="M36 41 Q40 44 44 41"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="emotion-card" data-emotion="joy">
+      <span class="emotion-label">joy</span>
+      <div class="emotion-icon">
+        <svg viewBox="0 0 150 100" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="20" y="24" width="110" height="42" rx="3"/>
+          <rect x="14" y="34" width="14" height="34" rx="5"/>
+          <rect x="122" y="34" width="14" height="34" rx="5"/>
+          <line x1="28" y1="68" x2="28" y2="78"/>
+          <line x1="42" y1="68" x2="42" y2="78"/>
+          <line x1="108" y1="68" x2="108" y2="78"/>
+          <line x1="122" y1="68" x2="122" y2="78"/>
+          <ellipse cx="40" cy="38" rx="9" ry="10"/>
+          <path d="M31 33 Q28 26 33 23 Q37 20 40 25 Q43 20 47 23 Q52 26 49 33"/>
+          <path d="M30 37 Q25 33 28 29"/>
+          <path d="M30 42 Q25 39 27 35"/>
+          <path d="M49 33 Q53 30 51 36"/>
+          <path d="M47 45 L50 51 L53 45"/>
+          <line x1="50" y1="48" x2="108" y2="57"/>
+          <line x1="50" y1="53" x2="108" y2="62"/>
+          <path d="M58 50 L78 54"/>
+          <path d="M56 54 L74 57"/>
+          <!-- Face: squinting happy eyes, big wide grin -->
+          <path d="M34 36 Q36 34 38 36"/>
+          <path d="M42 36 Q44 34 46 36"/>
+          <path d="M34 41 Q40 47 46 41"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="emotion-content" id="emotion-content">
+    <h2 id="emotion-title"></h2>
+    <p id="emotion-description">content coming soon. this space will hold 30-45 second clips and poems exploring this emotion.</p>
+  </div>
+
+  <script>
+    (function () {
+      var password = prompt("Enter password to access Emotions:");
+      if (password !== "couchkid") {
+        window.location.href = "{{ '/' | relative_url }}";
+        return;
+      }
+
+      var cards = document.querySelectorAll(".emotion-card");
+      var contentArea = document.getElementById("emotion-content");
+      var emotionTitle = document.getElementById("emotion-title");
+
+      cards.forEach(function (card) {
+        card.addEventListener("click", function () {
+          var emotion = card.getAttribute("data-emotion");
+
+          cards.forEach(function (c) { c.classList.remove("active"); });
+          card.classList.add("active");
+
+          emotionTitle.textContent = emotion + ".";
+          contentArea.classList.add("visible");
+
+          contentArea.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

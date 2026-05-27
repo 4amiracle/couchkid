@@ -13,14 +13,6 @@ body {
   min-height: 100vh;
 }
 
-/* Click overlay */
-#click-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  cursor: pointer;
-}
-
 /* Navigation */
 nav {
   position: fixed;
@@ -40,17 +32,11 @@ nav {
   letter-spacing: 0.08em;
   text-decoration: none;
   color: #111;
-  opacity: 0;
-  transform: translateY(-20px);
   transition: color 0.2s ease;
 }
 
 .nav-link:hover {
   color: #555;
-}
-
-.nav-link.animate-in {
-  animation: nav-drop 600ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Main content */
@@ -69,25 +55,12 @@ main {
   font-size: clamp(3rem, 10vw, 8rem);
   font-weight: 700;
   letter-spacing: -0.03em;
-  opacity: 0;
-  clip-path: inset(0 100% 0 0);
-  transform: translateY(8px);
-}
-
-#title.animate-in {
-  animation: title-reveal 800ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Logo */
 #logo {
   max-width: min(300px, 60vw);
   height: auto;
-  opacity: 0;
-  transform: scale(0.8) translateY(10px);
-}
-
-#logo.animate-in {
-  animation: logo-fade 700ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Merch button in main */
@@ -102,8 +75,6 @@ main {
   border: 2px solid #111;
   border-radius: 2rem;
   padding: 0.6rem 2rem;
-  opacity: 0;
-  transform: translateY(10px);
   transition: background 0.2s ease, color 0.2s ease;
 }
 
@@ -112,38 +83,31 @@ main {
   color: #fff;
 }
 
-.merch-btn.animate-in {
-  animation: merch-fade 600ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+/* Corner links (bottom-left, bottom-right) */
+.corner-link {
+  position: fixed;
+  bottom: 2rem;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  color: #111;
+  transition: color 0.2s ease;
+  z-index: 10;
 }
 
-/* Keyframes */
-@keyframes title-reveal {
-  to {
-    opacity: 1;
-    clip-path: inset(0 0% 0 0);
-    transform: translateY(0);
-  }
+.corner-link:hover {
+  color: #555;
 }
 
-@keyframes logo-fade {
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
+.corner-left {
+  left: 2.5rem;
 }
 
-@keyframes nav-drop {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes merch-fade {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.corner-right {
+  right: 2.5rem;
 }
 
 /* Mobile */
@@ -160,5 +124,17 @@ main {
 
   main {
     gap: 1.5rem;
+  }
+
+  .corner-link {
+    bottom: 1.25rem;
+  }
+
+  .corner-left {
+    left: 1.25rem;
+  }
+
+  .corner-right {
+    right: 1.25rem;
   }
 }
