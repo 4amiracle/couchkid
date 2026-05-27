@@ -77,25 +77,6 @@ nav {
   right: 2.5rem;
 }
 
-/* Center logo (links back to home on subpages) */
-.center-logo {
-  position: fixed;
-  top: 1.25rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-}
-
-.center-logo img {
-  width: 60px;
-  height: auto;
-  transition: opacity 0.2s ease;
-}
-
-.center-logo img:hover {
-  opacity: 0.6;
-}
-
 /* Main content */
 main {
   display: flex;
