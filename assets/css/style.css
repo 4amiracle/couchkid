@@ -20,16 +20,10 @@ nav {
   left: 0;
   right: 0;
   display: flex;
-  justify-content: space-between;
+  gap: 2rem;
   padding: 1.5rem 2.5rem;
   z-index: 10;
   background: #fff;
-}
-
-.nav-left,
-.nav-right {
-  display: flex;
-  gap: 2rem;
 }
 
 .nav-link {
