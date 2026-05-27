@@ -69,10 +69,34 @@ layout: null
       text-align: center;
     }
 
-    .merch-image img {
+    .merch-images {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .merch-images img {
       width: 100%;
-      max-width: 600px;
+      max-width: 280px;
       height: auto;
+      cursor: pointer;
+      border: 3px solid transparent;
+      transition: border-color 0.2s ease;
+    }
+
+    .merch-images img.selected {
+      border-color: #111;
+    }
+
+    .color-label {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      text-align: center;
+      margin-top: 0.5rem;
     }
 
     .order-form {
@@ -205,11 +229,25 @@ layout: null
       <h1>merch.</h1>
     </div>
 
-    <div class="merch-image">
-      <img src="{{ '/assets/images/merch.png' | relative_url }}" alt="Couch Kid T-Shirt and Hoodie">
+    <div class="merch-images">
+      <div>
+        <img src="{{ '/assets/images/merch.png' | relative_url }}" alt="Couch Kid Cream" id="img-cream" class="selected" data-color="cream">
+        <p class="color-label">Cream</p>
+      </div>
+      <div>
+        <img src="{{ '/assets/images/merch-black.png' | relative_url }}" alt="Couch Kid Black" id="img-black" data-color="black">
+        <p class="color-label">Black</p>
+      </div>
     </div>
 
     <form class="order-form" id="order-form">
+      <label>
+        Color
+        <select name="color" id="color-select" required>
+          <option value="cream" selected>Cream</option>
+          <option value="black">Black</option>
+        </select>
+      </label>
       <label>
         Item
         <select name="item" required>
@@ -257,6 +295,23 @@ layout: null
   </div>
 
   <script>
+    var images = document.querySelectorAll(".merch-images img");
+    var colorSelect = document.getElementById("color-select");
+
+    images.forEach(function (img) {
+      img.addEventListener("click", function () {
+        images.forEach(function (i) { i.classList.remove("selected"); });
+        img.classList.add("selected");
+        colorSelect.value = img.getAttribute("data-color");
+      });
+    });
+
+    colorSelect.addEventListener("change", function () {
+      images.forEach(function (i) { i.classList.remove("selected"); });
+      var selected = document.querySelector('[data-color="' + colorSelect.value + '"]');
+      if (selected) selected.classList.add("selected");
+    });
+
     document.getElementById("order-form").addEventListener("submit", function (e) {
       e.preventDefault();
       document.getElementById("merch-content").style.display = "none";
