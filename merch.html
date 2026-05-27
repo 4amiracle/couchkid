@@ -9,7 +9,7 @@ layout: null
   <title>Merch — Couch Kid</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;700&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after {
       margin: 0;
@@ -19,11 +19,10 @@ layout: null
 
     body {
       background: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      font-family: "Space Grotesk", sans-serif;
+      color: #111;
       min-height: 100vh;
-      padding: 5rem 2rem 2rem;
+      padding: 6rem 2rem 3rem;
     }
 
     nav {
@@ -35,6 +34,7 @@ layout: null
       justify-content: space-between;
       padding: 1.5rem 2.5rem;
       z-index: 10;
+      background: #fff;
     }
 
     nav a {
@@ -52,39 +52,125 @@ layout: null
       color: #555;
     }
 
-    .merch-grid {
+    .merch-container {
+      max-width: 700px;
+      margin: 0 auto;
       display: flex;
-      gap: 3rem;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
+      gap: 2.5rem;
     }
 
-    .merch-item {
+    .page-header h1 {
+      font-family: "Figtree", sans-serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
       text-align: center;
-      text-decoration: none;
-      display: block;
-      cursor: pointer;
-      transition: transform 0.2s ease;
     }
 
-    .merch-item:hover {
-      transform: scale(1.03);
-    }
-
-    .merch-item img {
-      max-width: min(300px, 40vw);
+    .merch-image img {
+      width: 100%;
+      max-width: 600px;
       height: auto;
     }
 
-    .merch-item p {
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 1rem;
+    .order-form {
+      width: 100%;
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .order-form label {
+      font-size: 0.75rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.08em;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .order-form input,
+    .order-form select,
+    .order-form textarea {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 0.95rem;
+      padding: 0.6rem 0.75rem;
+      border: 2px solid #111;
+      border-radius: 0;
+      background: #fff;
       color: #111;
-      margin-top: 1rem;
+      outline: none;
+      transition: border-color 0.2s ease;
+      -webkit-appearance: none;
+    }
+
+    .order-form input:focus,
+    .order-form select:focus,
+    .order-form textarea:focus {
+      border-color: #555;
+    }
+
+    .order-form textarea {
+      resize: vertical;
+      min-height: 60px;
+    }
+
+    .order-form button {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 0.875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.75rem 1.5rem;
+      background: #111;
+      color: #fff;
+      border: 2px solid #111;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .order-form button:hover {
+      background: #fff;
+      color: #111;
+    }
+
+    .confirmation {
+      display: none;
+      text-align: center;
+      max-width: 400px;
+    }
+
+    .confirmation h2 {
+      font-family: "Figtree", sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .confirmation p {
+      font-family: "Figtree", sans-serif;
+      font-size: 1rem;
+      color: #555;
+    }
+
+    .confirmation a {
+      display: inline-block;
+      margin-top: 1.5rem;
+      font-size: 0.875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #111;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .confirmation a:hover {
+      color: #555;
     }
 
     @media (max-width: 480px) {
@@ -92,20 +178,18 @@ layout: null
         padding: 1rem 1.25rem;
       }
 
-      nav a {
-        padding: 0.25rem 0.5rem;
-      }
-
       body {
-        padding-top: 4rem;
+        padding-top: 5rem;
       }
 
-      .merch-grid {
-        gap: 2rem;
+      .order-form {
+        max-width: 100%;
       }
 
-      .merch-item img {
-        max-width: min(300px, 70vw);
+      .order-form input,
+      .order-form select,
+      .order-form textarea {
+        padding: 0.75rem 1rem;
       }
     }
   </style>
@@ -115,15 +199,69 @@ layout: null
     <a href="{{ '/' | relative_url }}">Home</a>
     <a href="{{ '/story' | relative_url }}">Story</a>
   </nav>
-  <div class="merch-grid">
-    <a href="{{ '/order' | relative_url }}?item=tshirt" class="merch-item">
-      <img src="{{ '/assets/images/tshirt.png' | relative_url }}" alt="Couch Kid T-Shirt">
-      <p>T-Shirt</p>
-    </a>
-    <a href="{{ '/order' | relative_url }}?item=sweatshirt" class="merch-item">
-      <img src="{{ '/assets/images/sweatshirt.png' | relative_url }}" alt="Couch Kid Sweatshirt">
-      <p>Sweatshirt</p>
-    </a>
+
+  <div class="merch-container" id="merch-content">
+    <div class="page-header">
+      <h1>merch.</h1>
+    </div>
+
+    <div class="merch-image">
+      <img src="{{ '/assets/images/merch.png' | relative_url }}" alt="Couch Kid T-Shirt and Hoodie">
+    </div>
+
+    <form class="order-form" id="order-form">
+      <label>
+        Item
+        <select name="item" required>
+          <option value="" disabled selected>Select item</option>
+          <option value="tshirt">T-Shirt</option>
+          <option value="hoodie">Hoodie</option>
+          <option value="both">Both</option>
+        </select>
+      </label>
+      <label>
+        Size
+        <select name="size" required>
+          <option value="" disabled selected>Select size</option>
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
+          <option value="XXL">XXL</option>
+        </select>
+      </label>
+      <label>
+        Name
+        <input type="text" name="name" required>
+      </label>
+      <label>
+        Email
+        <input type="email" name="email" required>
+      </label>
+      <label>
+        Shipping Address
+        <textarea name="address" rows="3" required></textarea>
+      </label>
+      <label>
+        Notes (optional)
+        <textarea name="notes" rows="2"></textarea>
+      </label>
+      <button type="submit">Place Order</button>
+    </form>
   </div>
+
+  <div class="confirmation" id="confirmation">
+    <h2>Order Received</h2>
+    <p>We'll be in touch at the email you provided.</p>
+    <a href="{{ '/' | relative_url }}">Back to Home</a>
+  </div>
+
+  <script>
+    document.getElementById("order-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      document.getElementById("merch-content").style.display = "none";
+      document.getElementById("confirmation").style.display = "block";
+    });
+  </script>
 </body>
 </html>
