@@ -16,16 +16,20 @@ layout: null
 </head>
 <body>
   <nav>
-    <a href="{{ '/' | relative_url }}" class="nav-link" id="nav-home">Home</a>
-    <a href="{{ '/story' | relative_url }}" class="nav-link" id="nav-story">Story</a>
+    <div class="nav-left">
+      <a href="{{ '/' | relative_url }}" class="nav-link">Home</a>
+      <a href="{{ '/story' | relative_url }}" class="nav-link">Story</a>
+    </div>
+    <div class="nav-right">
+      <a href="{{ '/mission' | relative_url }}" class="nav-link">Mission</a>
+      <a href="{{ '/merch' | relative_url }}" class="nav-link">Merch</a>
+    </div>
   </nav>
 
   <main>
     <h1 id="title">couch kid.</h1>
-    <a href="{{ '/merch' | relative_url }}" class="merch-btn" id="main-merch">Merch</a>
     <img id="logo" src="{{ '/assets/images/logo.png' | relative_url }}" alt="Couch Kid logo">
-    <a href="{{ '/emotions' | relative_url }}" class="corner-link corner-left" id="corner-emotions">Emotions</a>
-    <a href="{{ '/mission' | relative_url }}" class="corner-link corner-right" id="corner-mission">Mission</a>
+    <a href="{{ '/emotions' | relative_url }}" class="emotions-link">Emotions</a>
   </main>
 
 </body>

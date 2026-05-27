@@ -209,8 +209,14 @@ layout: null
 </head>
 <body>
   <nav>
-    <a href="{{ '/' | relative_url }}">Home</a>
-    <a href="{{ '/story' | relative_url }}">Story</a>
+    <div class="nav-left">
+      <a href="{{ '/' | relative_url }}" class="nav-link">Home</a>
+      <a href="{{ '/story' | relative_url }}" class="nav-link">Story</a>
+    </div>
+    <div class="nav-right">
+      <a href="{{ '/mission' | relative_url }}" class="nav-link">Mission</a>
+      <a href="{{ '/merch' | relative_url }}" class="nav-link">Merch</a>
+    </div>
   </nav>
 
   <div class="order-container" id="order-content">
