@@ -69,34 +69,69 @@ layout: null
       text-align: center;
     }
 
-    .merch-images {
+    .featured-image {
+      width: 100%;
+      max-width: 550px;
+      height: 400px;
+      overflow: hidden;
+    }
+
+    .featured-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: object-position 0.4s ease, transform 0.4s ease;
+      transform: scale(1);
+    }
+
+    .featured-image img.hidden {
+      display: none;
+    }
+
+    .featured-image img.zoom-tshirt {
+      object-position: 25% center;
+      transform: scale(1.4);
+    }
+
+    .featured-image img.zoom-hoodie {
+      object-position: 75% center;
+      transform: scale(1.4);
+    }
+
+    .color-thumbs {
       display: flex;
-      gap: 2rem;
-      flex-wrap: wrap;
+      gap: 1rem;
       justify-content: center;
     }
 
-    .merch-images img {
-      width: 100%;
-      max-width: 280px;
-      height: auto;
+    .color-thumb {
+      text-align: center;
       cursor: pointer;
-      border: 3px solid transparent;
-      transition: border-color 0.2s ease;
     }
 
-    .merch-images img.selected {
+    .color-thumb img {
+      width: 80px;
+      height: auto;
+      border: 3px solid transparent;
+      transition: border-color 0.2s ease;
+      opacity: 0.5;
+      transition: opacity 0.2s ease, border-color 0.2s ease;
+    }
+
+    .color-thumb.active img {
       border-color: #111;
+      opacity: 1;
     }
 
     .color-label {
       font-family: "Space Grotesk", sans-serif;
-      font-size: 0.75rem;
+      font-size: 0.65rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       text-align: center;
-      margin-top: 0.5rem;
+      margin-top: 0.35rem;
     }
 
     .order-form {
@@ -229,13 +264,18 @@ layout: null
       <h1>merch.</h1>
     </div>
 
-    <div class="merch-images">
-      <div>
-        <img src="{{ '/assets/images/merch.png' | relative_url }}" alt="Couch Kid Cream" id="img-cream" class="selected" data-color="cream">
+    <div class="featured-image">
+      <img src="{{ '/assets/images/merch.png' | relative_url }}" alt="Couch Kid Cream" id="featured-cream" data-color="cream">
+      <img src="{{ '/assets/images/merch-black.png' | relative_url }}" alt="Couch Kid Black" id="featured-black" data-color="black" class="hidden">
+    </div>
+
+    <div class="color-thumbs">
+      <div class="color-thumb active" data-color="cream">
+        <img src="{{ '/assets/images/merch.png' | relative_url }}" alt="Cream">
         <p class="color-label">Cream</p>
       </div>
-      <div>
-        <img src="{{ '/assets/images/merch-black.png' | relative_url }}" alt="Couch Kid Black" id="img-black" data-color="black">
+      <div class="color-thumb" data-color="black">
+        <img src="{{ '/assets/images/merch-black.png' | relative_url }}" alt="Black">
         <p class="color-label">Black</p>
       </div>
     </div>
@@ -295,21 +335,39 @@ layout: null
   </div>
 
   <script>
-    var images = document.querySelectorAll(".merch-images img");
+    var thumbs = document.querySelectorAll(".color-thumb");
+    var featuredImages = document.querySelectorAll(".featured-image img");
     var colorSelect = document.getElementById("color-select");
+    var itemSelect = document.querySelector('select[name="item"]');
 
-    images.forEach(function (img) {
-      img.addEventListener("click", function () {
-        images.forEach(function (i) { i.classList.remove("selected"); });
-        img.classList.add("selected");
-        colorSelect.value = img.getAttribute("data-color");
+    function selectColor(color) {
+      thumbs.forEach(function (t) { t.classList.remove("active"); });
+      featuredImages.forEach(function (img) { img.classList.add("hidden"); });
+
+      var activeThumb = document.querySelector('.color-thumb[data-color="' + color + '"]');
+      var activeImg = document.querySelector('.featured-image img[data-color="' + color + '"]');
+      if (activeThumb) activeThumb.classList.add("active");
+      if (activeImg) activeImg.classList.remove("hidden");
+      colorSelect.value = color;
+    }
+
+    thumbs.forEach(function (thumb) {
+      thumb.addEventListener("click", function () {
+        selectColor(thumb.getAttribute("data-color"));
       });
     });
 
     colorSelect.addEventListener("change", function () {
-      images.forEach(function (i) { i.classList.remove("selected"); });
-      var selected = document.querySelector('[data-color="' + colorSelect.value + '"]');
-      if (selected) selected.classList.add("selected");
+      selectColor(colorSelect.value);
+    });
+
+    itemSelect.addEventListener("change", function () {
+      var val = itemSelect.value;
+      featuredImages.forEach(function (img) {
+        img.classList.remove("zoom-tshirt", "zoom-hoodie");
+        if (val === "tshirt") img.classList.add("zoom-tshirt");
+        else if (val === "hoodie") img.classList.add("zoom-hoodie");
+      });
     });
 
     document.getElementById("order-form").addEventListener("submit", function (e) {
