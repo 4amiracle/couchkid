@@ -19,28 +19,40 @@ layout: null
   <a href="{{ '/episodes' | relative_url }}" class="corner-link top-right">Episodes</a>
 
   <main>
-    <h1 id="title">couch kid.</h1>
-    <div class="logo-wrapper">
-      <img id="logo" src="{{ '/assets/images/logo.png' | relative_url }}" alt="Couch Kid logo">
-      <svg class="bow" viewBox="0 0 100 68" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- left loop -->
-        <path d="M48 33 C44 17 26 7 12 13 C4 17 6 28 16 32 C28 37 44 35 48 33Z" fill="#dc2626"/>
-        <path d="M48 33 C44 21 30 13 18 17 C12 20 14 27 22 30 C32 34 44 33 48 33Z" fill="#b91c1c" opacity="0.35"/>
-        <!-- right loop -->
-        <path d="M52 33 C56 17 74 7 88 13 C96 17 94 28 84 32 C72 37 56 35 52 33Z" fill="#dc2626"/>
-        <path d="M52 33 C56 21 70 13 82 17 C88 20 86 27 78 30 C68 34 56 33 52 33Z" fill="#b91c1c" opacity="0.35"/>
-        <!-- left tail -->
-        <path d="M46 37 C40 46 32 55 26 63" stroke="#dc2626" stroke-width="4.5" stroke-linecap="round"/>
-        <!-- right tail -->
-        <path d="M54 37 C60 46 68 55 74 63" stroke="#dc2626" stroke-width="4.5" stroke-linecap="round"/>
-        <!-- center knot -->
-        <circle cx="50" cy="33" r="5.5" fill="#991b1b"/>
-      </svg>
-    </div>
+    <h1 id="title">couch ki<span class="bow-d">
+        <svg class="bow" viewBox="0 0 200 108" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- left wing back layer -->
+          <path d="M97 43 C86 17 32 4 4 30 C-12 49 -6 82 18 95 C46 110 85 97 97 74 C101 67 101 54 97 43Z" fill="#b91c1c"/>
+          <!-- right wing back layer -->
+          <path d="M103 43 C114 17 168 4 196 30 C212 49 206 82 182 95 C154 110 115 97 103 74 C99 67 99 54 103 43Z" fill="#b91c1c"/>
+          <!-- left wing front -->
+          <path d="M96 45 C85 22 36 10 10 35 C-5 52 1 81 23 93 C49 106 84 95 96 73 C100 66 100 56 96 45Z" fill="#dc2626"/>
+          <!-- left wing inner highlight fold -->
+          <path d="M93 47 C81 28 46 18 22 36 C46 18 81 28 93 47Z" fill="#ef4444" opacity="0.45"/>
+          <!-- right wing front -->
+          <path d="M104 45 C115 22 164 10 190 35 C205 52 199 81 177 93 C151 106 116 95 104 73 C100 66 100 56 104 45Z" fill="#dc2626"/>
+          <!-- right wing inner highlight fold -->
+          <path d="M107 47 C119 28 154 18 178 36 C154 18 119 28 107 47Z" fill="#ef4444" opacity="0.45"/>
+          <!-- center knot outer -->
+          <rect x="86" y="38" width="28" height="44" rx="7" fill="#7f1d1d"/>
+          <!-- center knot inner -->
+          <rect x="90" y="43" width="20" height="34" rx="5" fill="#991b1b"/>
+          <!-- center knot highlight -->
+          <rect x="93" y="46" width="6" height="28" rx="3" fill="#b91c1c" opacity="0.7"/>
+        </svg>d</span>.</h1>
+    <img id="logo" src="{{ '/assets/images/logo.png' | relative_url }}" alt="Couch Kid logo">
     <p class="home-label">the podcast</p>
   </main>
 
   <a href="{{ '/merch' | relative_url }}" class="corner-link bottom-left">Merch</a>
   <a href="{{ '/mission' | relative_url }}" class="corner-link bottom-right">Mission</a>
+
+  <a href="https://www.instagram.com/couchkidconvos/" target="_blank" rel="noopener" class="ig-link" aria-label="Instagram">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+      <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
+      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+    </svg>
+  </a>
 </body>
 </html>

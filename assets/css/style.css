@@ -77,30 +77,47 @@ main {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.25em;
-  color: #bbb;
+  color: #dc2626;
 }
 
-/* ── Logo + bow ── */
-.logo-wrapper {
-  position: relative;
-  display: inline-block;
-}
-
+/* ── Logo ── */
 #logo {
   max-width: min(260px, 55vw);
   height: auto;
   display: block;
 }
 
+/* ── Bow on "d" in title ── */
+.bow-d {
+  position: relative;
+  display: inline-block;
+  vertical-align: baseline;
+}
+
 .bow {
   position: absolute;
-  top: -14%;
+  bottom: 100%;
   left: 50%;
   transform: translateX(-50%);
-  width: 30%;
+  width: 1.3em;
+  max-width: 160px;
   height: auto;
   pointer-events: none;
 }
+
+/* ── Instagram link ── */
+.ig-link {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #111;
+  transition: color 0.2s ease;
+  z-index: 10;
+  line-height: 0;
+}
+.ig-link:hover { color: #555; }
+.ig-link svg { width: 20px; height: 20px; }
 
 /* ── Subpage layout ── */
 .page-content {
