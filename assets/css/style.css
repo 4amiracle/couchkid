@@ -1,6 +1,4 @@
-*,
-*::before,
-*::after {
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -13,33 +11,7 @@ body {
   min-height: 100vh;
 }
 
-/* Subpage stacked nav (upper left) */
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  padding: 1.5rem 2.5rem;
-  z-index: 10;
-}
-
-.nav-link {
-  font-size: 0.875rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  text-decoration: none;
-  color: #111;
-  transition: color 0.2s ease;
-}
-
-.nav-link:hover {
-  color: #555;
-}
-
-/* Home page corner links */
+/* ── Home corner links ── */
 .corner-link {
   position: fixed;
   font-family: "Space Grotesk", sans-serif;
@@ -52,42 +24,46 @@ nav {
   transition: color 0.2s ease;
   z-index: 10;
 }
+.corner-link:hover { color: #555; }
+.top-left    { top: 1.5rem;  left: 2.5rem; }
+.top-right   { top: 1.5rem;  right: 2.5rem; }
+.bottom-left { bottom: 2rem; left: 2.5rem; }
+.bottom-right{ bottom: 2rem; right: 2.5rem; }
 
-.corner-link:hover {
-  color: #555;
+/* ── Subpage stacked nav ── */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.5rem 2.5rem;
+  z-index: 10;
+  background: #fff;
 }
-
-.top-left {
-  top: 1.5rem;
-  left: 2.5rem;
+nav a {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  color: #111;
+  transition: color 0.2s ease;
 }
+nav a:hover { color: #555; }
 
-.top-right {
-  top: 1.5rem;
-  right: 2.5rem;
-}
-
-.bottom-left {
-  bottom: 2rem;
-  left: 2.5rem;
-}
-
-.bottom-right {
-  bottom: 2rem;
-  right: 2.5rem;
-}
-
-/* Main content */
+/* ── Home page layout ── */
 main {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  gap: 2rem;
+  gap: 1.25rem;
 }
 
-/* Title */
 #title {
   font-family: "Figtree", sans-serif;
   font-size: clamp(3rem, 10vw, 8rem);
@@ -95,53 +71,158 @@ main {
   letter-spacing: -0.03em;
 }
 
-/* Logo */
-#logo {
-  max-width: min(300px, 60vw);
-  height: auto;
+.home-label {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: #bbb;
 }
 
-/* Mobile */
+/* ── Logo + bow ── */
+.logo-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+#logo {
+  max-width: min(260px, 55vw);
+  height: auto;
+  display: block;
+}
+
+.bow {
+  position: absolute;
+  top: -14%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30%;
+  height: auto;
+  pointer-events: none;
+}
+
+/* ── Subpage layout ── */
+.page-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 6rem 2rem 3rem;
+  gap: 2rem;
+}
+
+.page-title {
+  font-family: "Figtree", sans-serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #111;
+}
+
+/* ── Story / text ── */
+.body-text {
+  font-family: "Figtree", sans-serif;
+  font-weight: 400;
+  color: #2563EB;
+  font-size: clamp(1rem, 2.5vw, 1.375rem);
+  max-width: 600px;
+  line-height: 1.8;
+  text-align: center;
+}
+
+.sign-off {
+  font-family: "Figtree", sans-serif;
+  font-weight: 400;
+  color: #2563EB;
+  font-size: clamp(1rem, 2.5vw, 1.375rem);
+  text-align: center;
+  line-height: 1.8;
+}
+.sign-off .brand { color: #111; }
+
+/* ── Episodes page ── */
+.episodes-list {
+  width: 100%;
+  max-width: 620px;
+}
+
+.episode-item {
+  padding: 1.75rem 0;
+  border-top: 1px solid #e8e8e8;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.episode-item:last-child {
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.episode-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.episode-num {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #bbb;
+}
+
+.episode-status {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #ddd;
+}
+
+.episode-guest {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #111;
+}
+
+.episode-title {
+  font-family: "Figtree", sans-serif;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  font-weight: 400;
+  color: #2563EB;
+  line-height: 1.55;
+}
+
+.listen-bar {
+  margin-top: 3rem;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #ccc;
+  text-align: center;
+}
+
+/* ── Responsive ── */
 @media (max-width: 768px) {
-  main {
-    gap: 1.5rem;
-  }
+  main { gap: 1rem; }
 }
 
 @media (max-width: 480px) {
-  nav {
-    padding: 1rem 1.25rem;
-  }
-
-  .nav-link {
-    font-size: 0.75rem;
-  }
-
-  .corner-link {
-    font-size: 0.75rem;
-  }
-
-  .top-left {
-    top: 1rem;
-    left: 1.25rem;
-  }
-
-  .top-right {
-    top: 1rem;
-    right: 1.25rem;
-  }
-
-  .bottom-left {
-    bottom: 1.25rem;
-    left: 1.25rem;
-  }
-
-  .bottom-right {
-    bottom: 1.25rem;
-    right: 1.25rem;
-  }
-
-  main {
-    gap: 1.5rem;
-  }
+  nav { padding: 1rem 1.25rem; }
+  nav a { font-size: 0.75rem; }
+  .corner-link { font-size: 0.75rem; }
+  .top-left     { top: 1rem; left: 1.25rem; }
+  .top-right    { top: 1rem; right: 1.25rem; }
+  .bottom-left  { bottom: 1.25rem; left: 1.25rem; }
+  .bottom-right { bottom: 1.25rem; right: 1.25rem; }
+  .page-content { padding-top: 5rem; }
 }

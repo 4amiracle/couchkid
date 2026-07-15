@@ -6,92 +6,25 @@ layout: null
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mission — Couch Kid</title>
+  <title>Mission — Couch Kid Podcast</title>
   <link rel="icon" href="{{ '/favicon.ico' | relative_url }}" type="image/x-icon">
   <link rel="apple-touch-icon" href="{{ '/apple-touch-icon.png' | relative_url }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;700&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      background: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 2rem;
-      gap: 2rem;
-    }
-
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      padding: 1.5rem 2.5rem;
-      z-index: 10;
-    }
-
-    nav a {
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 0.875rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      text-decoration: none;
-      color: #111;
-      transition: color 0.2s ease;
-    }
-
-    nav a:hover {
-      color: #555;
-    }
-
-    h1 {
-      font-family: "Figtree", sans-serif;
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      color: #111;
-    }
-
-    p {
-      font-family: "Figtree", sans-serif;
-      font-weight: 400;
-      color: #2563EB;
-      font-size: clamp(1rem, 2.5vw, 1.5rem);
-      max-width: 600px;
-      line-height: 1.7;
-      text-align: center;
-    }
-
-    @media (max-width: 480px) {
-      nav {
-        padding: 1rem 1.25rem;
-      }
-
-      body {
-        padding-top: 4rem;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
 <body>
   <nav>
-    <a href="{{ '/' | relative_url }}" class="nav-link">Home</a>
-    <a href="{{ '/story' | relative_url }}" class="nav-link">Story</a>
-    <a href="{{ '/merch' | relative_url }}" class="nav-link">Merch</a>
+    <a href="{{ '/' | relative_url }}">Home</a>
+    <a href="{{ '/story' | relative_url }}">Story</a>
+    <a href="{{ '/episodes' | relative_url }}">Episodes</a>
+    <a href="{{ '/merch' | relative_url }}">Merch</a>
   </nav>
-  <h1>mission.</h1>
-  <p>couch kid exists to help people feel like themselves. we believe emotional vulnerability shouldn't be rare or radical — it should be accessible. through street interviews, conversations, and creative expression, we let the world be emotional one feeling at a time. we meet people where they are, on the sidewalk, on the couch, and ask them to be honest. not polished. not performing. just human. couch kid is not a brand that talks at you. it's a conversation that sits with you.</p>
+
+  <div class="page-content">
+    <h1 class="page-title">mission.</h1>
+    <p class="body-text">couch kid exists to help people feel like themselves. we believe emotional vulnerability shouldn't be rare or radical — it should be accessible. through conversations with experts in psychology, mental health, and human experience, we sit with the feelings most people are afraid to name. we invite therapists, researchers, and people who've been through it to tell us what they know — not the polished version. the honest one. couch kid is not a brand that talks at you. it's a conversation that sits with you.</p>
+  </div>
 </body>
 </html>

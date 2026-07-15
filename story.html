@@ -6,102 +6,30 @@ layout: null
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Story — Couch Kid</title>
+  <title>Story — Couch Kid Podcast</title>
   <link rel="icon" href="{{ '/favicon.ico' | relative_url }}" type="image/x-icon">
   <link rel="apple-touch-icon" href="{{ '/apple-touch-icon.png' | relative_url }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;700&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      background: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 2rem;
-      gap: 2rem;
-    }
-
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      padding: 1.5rem 2.5rem;
-      z-index: 10;
-    }
-
-    nav a {
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 0.875rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      text-decoration: none;
-      color: #111;
-      transition: color 0.2s ease;
-    }
-
-    nav a:hover {
-      color: #555;
-    }
-
-    p {
-      font-family: "Figtree", sans-serif;
-      font-weight: 400;
-      color: #2563EB;
-      font-size: clamp(1rem, 2.5vw, 1.5rem);
-      max-width: 600px;
-      line-height: 1.7;
-      text-align: center;
-    }
-
-    .sign-off {
-      font-family: "Figtree", sans-serif;
-      font-weight: 400;
-      color: #2563EB;
-      font-size: clamp(1rem, 2.5vw, 1.5rem);
-      text-align: center;
-      line-height: 1.7;
-    }
-
-    .sign-off .brand {
-      color: #111;
-    }
-
-    @media (max-width: 480px) {
-      nav {
-        padding: 1rem 1.25rem;
-      }
-
-      body {
-        padding-top: 4rem;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
 <body>
   <nav>
-    <a href="{{ '/' | relative_url }}" class="nav-link">Home</a>
-    <a href="{{ '/mission' | relative_url }}" class="nav-link">Mission</a>
-    <a href="{{ '/merch' | relative_url }}" class="nav-link">Merch</a>
+    <a href="{{ '/' | relative_url }}">Home</a>
+    <a href="{{ '/episodes' | relative_url }}">Episodes</a>
+    <a href="{{ '/mission' | relative_url }}">Mission</a>
+    <a href="{{ '/merch' | relative_url }}">Merch</a>
   </nav>
-  <p>i honestly want to give you an honest take on life, mental health, connection, storytelling, tenderness and how we get through it together</p>
-  <p>the only way I can think of doin this right now if through my notes app and through conversation... maybe eventually video</p>
-  <p>to start, I wish to produce & riff<br>to leap for myself<br>play on the playground</p>
-  <div class="sign-off">
-    xs&os,<br>
-    <span class="brand">couchkid</span>
+
+  <div class="page-content">
+    <p class="body-text">i honestly want to give you an honest take on life, mental health, connection, storytelling, tenderness and how we get through it together</p>
+    <p class="body-text">the only way I can think of doin this right now is through my notes app and through conversation... maybe eventually video</p>
+    <p class="body-text">to start, I wish to produce &amp; riff<br>to leap for myself<br>play on the playground</p>
+    <div class="sign-off">
+      xs&amp;os,<br>
+      <span class="brand">couchkid</span>
+    </div>
   </div>
 </body>
 </html>
