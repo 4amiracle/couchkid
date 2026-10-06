@@ -4,6 +4,20 @@ url: "https://couch-kid.com"
 baseurl: ""
 theme: null
 plugins: []
+# Merch orders are sent to a Google Form (responses land in its Google Sheet).
+# form_id: the long ID from the form's share link, docs.google.com/forms/d/e/<form_id>/viewform
+# fields:  each question's entry ID, from the form's "Get pre-filled link" URL (entry.123456789)
+# Leave form_id empty to pause online orders.
+order_google_form:
+  form_id: ""
+  fields:
+    color: ""
+    item: ""
+    size: ""
+    name: ""
+    email: ""
+    address: ""
+    notes: ""
 exclude:
   - Publish.command
   - "Claude outputs"

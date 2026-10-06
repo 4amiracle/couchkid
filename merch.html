@@ -192,11 +192,37 @@ layout: null
       color: #111;
     }
 
+    .order-form button:disabled {
+      background: #888;
+      border-color: #888;
+      color: #fff;
+      cursor: wait;
+    }
+
+    .form-error {
+      font-family: "Figtree", sans-serif;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: #C2410C;
+      text-align: center;
+    }
+
+    .form-error a { color: inherit; }
+
+    .form-error[hidden],
+    .order-form .hp { display: none; }
+
     .confirmation {
-      display: none;
       text-align: center;
       max-width: 400px;
+      margin: 0 auto;
+      padding: clamp(4rem, 15vh, 8rem) 1.5rem 2rem;
     }
+
+    .merch-container[hidden],
+    .confirmation[hidden] { display: none; }
+
+    .confirmation h2:focus { outline: none; }
 
     .confirmation h2 {
       font-family: "Figtree", sans-serif;
@@ -319,13 +345,18 @@ layout: null
         Notes (optional)
         <textarea name="notes" rows="2"></textarea>
       </label>
-      <button type="submit">Place Order</button>
+      <label class="hp" aria-hidden="true">
+        Leave this empty
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off">
+      </label>
+      <button type="submit" id="order-submit">Place Order</button>
+      <p class="form-error" id="order-error" role="alert" hidden></p>
     </form>
   </div>
 
-  <div class="confirmation" id="confirmation">
-    <h2>Order Received</h2>
-    <p>We'll be in touch at the email you provided.</p>
+  <div class="confirmation" id="confirmation" hidden>
+    <h2 tabindex="-1">Order Received</h2>
+    <p>Thank you! We'll email you soon to confirm your order and payment.</p>
     <a href="{{ '/' | relative_url }}">Back to Home</a>
   </div>
 
@@ -365,10 +396,60 @@ layout: null
       });
     });
 
-    document.getElementById("order-form").addEventListener("submit", function (e) {
+    var googleForm = {{ site.order_google_form | jsonify }} || {};
+    var orderForm = document.getElementById("order-form");
+    var orderSubmit = document.getElementById("order-submit");
+    var orderError = document.getElementById("order-error");
+    var igLink = '<a href="https://www.instagram.com/couchkidconvos/" target="_blank" rel="noopener">@couchkidconvos</a>';
+
+    function showOrderError(html) {
+      orderError.innerHTML = html;
+      orderError.hidden = false;
+    }
+
+    function showConfirmation() {
+      document.getElementById("merch-content").hidden = true;
+      document.getElementById("confirmation").hidden = false;
+      window.scrollTo(0, 0);
+      document.querySelector("#confirmation h2").focus();
+    }
+
+    orderForm.addEventListener("submit", function (e) {
       e.preventDefault();
-      document.getElementById("merch-content").style.display = "none";
-      document.getElementById("confirmation").style.display = "block";
+      orderError.hidden = true;
+
+      var data = new FormData(orderForm);
+      if (data.get("_gotcha")) { showConfirmation(); return; } // spam bot filled the hidden field
+
+      var fields = googleForm.fields || {};
+      if (!googleForm.form_id) {
+        showOrderError("Online orders aren't open yet — message us on Instagram at " + igLink + " to order.");
+        return;
+      }
+
+      // Map our form fields onto the Google Form's entry IDs
+      var body = new URLSearchParams();
+      Object.keys(fields).forEach(function (key) {
+        if (!fields[key]) return;
+        var el = orderForm.querySelector("[name=\"" + key + "\"]");
+        // Send dropdown labels ("T-Shirt") rather than codes ("tshirt") so the sheet reads nicely
+        var value = el && el.tagName === "SELECT" ? el.options[el.selectedIndex].text : data.get(key);
+        body.append(fields[key], value || "");
+      });
+
+      orderSubmit.disabled = true;
+      orderSubmit.textContent = "Sending…";
+
+      // Google Forms doesn't allow reading the response (no-cors), so only a network failure is detectable
+      fetch("https://docs.google.com/forms/d/e/" + googleForm.form_id + "/formResponse", {
+        method: "POST",
+        mode: "no-cors",
+        body: body
+      }).then(showConfirmation).catch(function () {
+        orderSubmit.disabled = false;
+        orderSubmit.textContent = "Place Order";
+        showOrderError("Sorry, your order didn't go through. Please try again, or message us on Instagram at " + igLink + ".");
+      });
     });
   </script>
   <footer class="site-footer">
