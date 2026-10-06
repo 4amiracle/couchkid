@@ -11,13 +11,13 @@ plugins: []
 order_google_form:
   form_id: "1FAIpQLSe9IRlofJqBEtmgDLnB5ZSiOE4zT_4c8w6pNYEWXjV15tT8mw"
   fields:
-    color: ""
-    item: ""
-    size: ""
-    name: ""
-    email: ""
-    address: ""
-    notes: ""
+    color: "entry.318751889"
+    item: "entry.96051657"
+    size: "entry.1806688890"
+    name: "entry.731172046"
+    email: "entry.1141751790"
+    address: "entry.379276999"
+    notes: "entry.1278206781"
 exclude:
   - Publish.command
   - "Claude outputs"
