@@ -12,6 +12,7 @@ layout: null
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;700&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
   <style>
     *, *::before, *::after {
       margin: 0;
@@ -24,37 +25,13 @@ layout: null
       font-family: "Space Grotesk", sans-serif;
       color: #111;
       min-height: 100vh;
-      padding: 6rem 2rem 3rem;
     }
 
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      padding: 1.5rem 2.5rem;
-      z-index: 10;
-      background: #fff;
-    }
 
-    nav a {
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 0.875rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      text-decoration: none;
-      color: #111;
-      transition: color 0.2s ease;
-    }
 
-    nav a:hover {
-      color: #555;
-    }
 
     .merch-container {
+      padding: 3rem 1.5rem 4rem;
       max-width: 700px;
       margin: 0 auto;
       display: flex;
@@ -251,13 +228,7 @@ layout: null
     }
 
     @media (max-width: 480px) {
-      nav {
-        padding: 1rem 1.25rem;
-      }
 
-      body {
-        padding-top: 5rem;
-      }
 
       .order-form {
         max-width: 100%;
@@ -272,12 +243,15 @@ layout: null
   </style>
 </head>
 <body>
-  <nav>
-    <a href="{{ '/' | relative_url }}" class="nav-link">Home</a>
-    <a href="{{ '/story' | relative_url }}" class="nav-link">Story</a>
-    <a href="{{ '/episodes' | relative_url }}" class="nav-link">Episodes</a>
-    <a href="{{ '/mission' | relative_url }}" class="nav-link">Mission</a>
-  </nav>
+  <header class="site-header">
+    <a href="{{ '/' | relative_url }}" class="wordmark">couch kid.</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="{{ '/story' | relative_url }}">Story</a>
+      <a href="{{ '/episodes' | relative_url }}">Episodes</a>
+      <a href="{{ '/mission' | relative_url }}">Mission</a>
+      <a href="{{ '/merch' | relative_url }}" aria-current="page">Merch</a>
+    </nav>
+  </header>
 
   <div class="merch-container" id="merch-content">
     <div class="page-header">
@@ -397,5 +371,11 @@ layout: null
       document.getElementById("confirmation").style.display = "block";
     });
   </script>
+  <footer class="site-footer">
+    <a href="https://www.instagram.com/couchkidconvos/" target="_blank" rel="noopener" class="footer-ig" aria-label="couch kid on Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      @couchkidconvos
+    </a>
+  </footer>
 </body>
 </html>

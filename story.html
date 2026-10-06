@@ -15,15 +15,18 @@ layout: null
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
 <body>
-  <nav>
-    <a href="{{ '/' | relative_url }}">Home</a>
-    <a href="{{ '/episodes' | relative_url }}">Episodes</a>
-    <a href="{{ '/mission' | relative_url }}">Mission</a>
-    <a href="{{ '/merch' | relative_url }}">Merch</a>
-  </nav>
+  <header class="site-header">
+    <a href="{{ '/' | relative_url }}" class="wordmark">couch kid.</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="{{ '/story' | relative_url }}" aria-current="page">Story</a>
+      <a href="{{ '/episodes' | relative_url }}">Episodes</a>
+      <a href="{{ '/mission' | relative_url }}">Mission</a>
+      <a href="{{ '/merch' | relative_url }}">Merch</a>
+    </nav>
+  </header>
 
   <div class="page-content">
-    <p class="body-text">i honestly want to give you an honest take on life, mental health, connection, storytelling, tenderness and how we get through it together</p>
+    <p class="body-text">i honestly want to give you a vulnerable take on life, mental health, connection, storytelling, tenderness and the things that are bothering/uplifting folks every single day</p>
     <p class="body-text">the only way I can think of doin this right now is through my notes app and through conversation... maybe eventually video</p>
     <p class="body-text">to start, I wish to produce &amp; riff<br>to leap for myself<br>play on the playground</p>
     <div class="sign-off">
@@ -31,5 +34,11 @@ layout: null
       <span class="brand">couchkid</span>
     </div>
   </div>
+  <footer class="site-footer">
+    <a href="https://www.instagram.com/couchkidconvos/" target="_blank" rel="noopener" class="footer-ig" aria-label="couch kid on Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      @couchkidconvos
+    </a>
+  </footer>
 </body>
 </html>

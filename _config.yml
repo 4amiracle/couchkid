@@ -4,3 +4,8 @@ url: "https://couch-kid.com"
 baseurl: ""
 theme: null
 plugins: []
+exclude:
+  - Publish.command
+  - "Claude outputs"
+  - Gemfile
+  - Gemfile.lock

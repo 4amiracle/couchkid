@@ -30,29 +30,64 @@ body {
 .bottom-left { bottom: 2rem; left: 2.5rem; }
 .bottom-right{ bottom: 2rem; right: 2.5rem; }
 
-/* ── Subpage stacked nav ── */
-nav {
-  position: fixed;
+/* ── Subpage header ── */
+.site-header {
+  position: sticky;
   top: 0;
-  left: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  padding: 1.5rem 2.5rem;
   z-index: 10;
-  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 2.5rem;
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid #f0f0f0;
 }
-nav a {
+.wordmark {
+  font-family: "Figtree", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #111;
+  text-decoration: none;
+}
+.site-nav { display: flex; gap: 2rem; }
+.site-nav a {
   font-family: "Space Grotesk", sans-serif;
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-decoration: none;
   color: #111;
-  transition: color 0.2s ease;
+  padding: 0.25rem 0;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
 }
-nav a:hover { color: #555; }
+.site-nav a:hover { color: #dc2626; }
+.site-nav a[aria-current="page"] { border-bottom-color: #dc2626; }
+
+/* ── Subpage footer ── */
+.site-footer {
+  display: flex;
+  justify-content: center;
+  padding: 2.5rem 1.5rem 3rem;
+}
+.footer-ig {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #111;
+  text-decoration: none;
+}
+.footer-ig:hover { color: #dc2626; }
+.footer-ig svg { width: 18px; height: 18px; }
 
 /* ── Home page layout ── */
 main {
@@ -87,24 +122,6 @@ main {
   display: block;
 }
 
-/* ── Bow on "d" in title ── */
-.bow-d {
-  position: relative;
-  display: inline-block;
-  vertical-align: baseline;
-}
-
-.bow {
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 1.3em;
-  max-width: 160px;
-  height: auto;
-  pointer-events: none;
-}
-
 /* ── Instagram link ── */
 .ig-link {
   position: fixed;
@@ -124,11 +141,11 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  padding: 6rem 2rem 3rem;
+  min-height: calc(100vh - 12rem);
+  padding: clamp(3rem, 8vh, 6rem) 1.5rem 2rem;
   gap: 2rem;
 }
+.prose { display: flex; flex-direction: column; gap: 1.5rem; }
 
 .page-title {
   font-family: "Figtree", sans-serif;
@@ -143,9 +160,9 @@ main {
   font-family: "Figtree", sans-serif;
   font-weight: 400;
   color: #2563EB;
-  font-size: clamp(1rem, 2.5vw, 1.375rem);
-  max-width: 600px;
-  line-height: 1.8;
+  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+  max-width: 640px;
+  line-height: 1.75;
   text-align: center;
 }
 
@@ -188,7 +205,7 @@ main {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: #bbb;
+  color: #888;
 }
 
 .episode-status {
@@ -197,7 +214,7 @@ main {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: #ddd;
+  color: #dc2626;
 }
 
 .episode-guest {
@@ -217,29 +234,47 @@ main {
   line-height: 1.55;
 }
 
-.listen-bar {
-  margin-top: 3rem;
+.listen { margin-top: 1.5rem; display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+.listen-label {
   font-family: "Space Grotesk", sans-serif;
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  color: #ccc;
-  text-align: center;
+  color: #888;
 }
+.listen-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; }
+.listen-btn {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.7rem 1.25rem;
+  border: 2px solid #111;
+  color: #111;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+a.listen-btn:hover { background: #111; color: #fff; }
+.listen-btn.is-soon { border-color: #ddd; color: #aaa; }
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
   main { gap: 1rem; }
+  .site-header { flex-direction: column; gap: 0.75rem; padding: 1rem 1.25rem 0.85rem; }
+  .wordmark { font-size: 1.35rem; }
+  .site-nav { gap: 1.5rem; }
+  .site-nav a { font-size: 0.75rem; }
 }
 
 @media (max-width: 480px) {
-  nav { padding: 1rem 1.25rem; }
-  nav a { font-size: 0.75rem; }
   .corner-link { font-size: 0.75rem; }
   .top-left     { top: 1rem; left: 1.25rem; }
   .top-right    { top: 1rem; right: 1.25rem; }
   .bottom-left  { bottom: 1.25rem; left: 1.25rem; }
   .bottom-right { bottom: 1.25rem; right: 1.25rem; }
-  .page-content { padding-top: 5rem; }
+  .site-nav { gap: 1.1rem; }
+  .page-content { padding-top: 2.5rem; }
+  .episode-meta { gap: 1rem; }
 }

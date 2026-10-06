@@ -15,12 +15,15 @@ layout: null
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
 <body>
-  <nav>
-    <a href="{{ '/' | relative_url }}">Home</a>
-    <a href="{{ '/story' | relative_url }}">Story</a>
-    <a href="{{ '/mission' | relative_url }}">Mission</a>
-    <a href="{{ '/merch' | relative_url }}">Merch</a>
-  </nav>
+  <header class="site-header">
+    <a href="{{ '/' | relative_url }}" class="wordmark">couch kid.</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="{{ '/story' | relative_url }}">Story</a>
+      <a href="{{ '/episodes' | relative_url }}" aria-current="page">Episodes</a>
+      <a href="{{ '/mission' | relative_url }}">Mission</a>
+      <a href="{{ '/merch' | relative_url }}">Merch</a>
+    </nav>
+  </header>
 
   <div class="page-content">
     <h1 class="page-title">episodes.</h1>
@@ -65,7 +68,20 @@ layout: null
 
     </div>
 
-    <p class="listen-bar">Spotify &nbsp;·&nbsp; Apple Podcasts &nbsp;·&nbsp; wherever you listen</p>
+    <div class="listen">
+      <p class="listen-label">listen on</p>
+      <div class="listen-buttons">
+        <span class="listen-btn is-soon">Spotify</span>
+        <span class="listen-btn is-soon">Apple Podcasts</span>
+        <span class="listen-btn is-soon">YouTube</span>
+      </div>
+    </div>
   </div>
+  <footer class="site-footer">
+    <a href="https://www.instagram.com/couchkidconvos/" target="_blank" rel="noopener" class="footer-ig" aria-label="couch kid on Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      @couchkidconvos
+    </a>
+  </footer>
 </body>
 </html>
