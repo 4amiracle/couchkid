@@ -9,7 +9,7 @@ plugins: []
 # fields:  each question's entry ID, from the form's "Get pre-filled link" URL (entry.123456789)
 # Leave form_id empty to pause online orders.
 order_google_form:
-  form_id: ""
+  form_id: "1FAIpQLSe9IRlofJqBEtmgDLnB5ZSiOE4zT_4c8w6pNYEWXjV15tT8mw"
   fields:
     color: ""
     item: ""

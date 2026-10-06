@@ -422,7 +422,8 @@ layout: null
       if (data.get("_gotcha")) { showConfirmation(); return; } // spam bot filled the hidden field
 
       var fields = googleForm.fields || {};
-      if (!googleForm.form_id) {
+      var missingField = ["color", "item", "size", "name", "email", "address", "notes"].some(function (key) { return !fields[key]; });
+      if (!googleForm.form_id || missingField) {
         showOrderError("Online orders aren't open yet — message us on Instagram at " + igLink + " to order.");
         return;
       }
