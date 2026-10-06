@@ -66,8 +66,8 @@ body {
   border-bottom: 2px solid transparent;
   transition: color 0.2s ease, border-color 0.2s ease;
 }
-.site-nav a:hover { color: #dc2626; }
-.site-nav a[aria-current="page"] { border-bottom-color: #dc2626; }
+.site-nav a:hover { color: #C2410C; }
+.site-nav a[aria-current="page"] { border-bottom-color: #C2410C; }
 
 /* ── Subpage footer ── */
 .site-footer {
@@ -86,7 +86,7 @@ body {
   color: #111;
   text-decoration: none;
 }
-.footer-ig:hover { color: #dc2626; }
+.footer-ig:hover { color: #C2410C; }
 .footer-ig svg { width: 18px; height: 18px; }
 
 /* ── Home page layout ── */
@@ -112,7 +112,7 @@ main {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.25em;
-  color: #dc2626;
+  color: #C2410C;
 }
 
 /* ── Logo ── */
@@ -214,7 +214,7 @@ main {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: #dc2626;
+  color: #C2410C;
 }
 
 .episode-guest {

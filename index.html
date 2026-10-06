@@ -13,6 +13,10 @@ layout: null
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;700&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  <script>document.documentElement.classList.add('corner-intro');</script>
+  <style>
+    .corner-intro .corner-link { opacity: 0; }
+  </style>
 </head>
 <body class="home">
   <a href="{{ '/story' | relative_url }}" class="corner-link top-left">Story</a>
@@ -34,5 +38,57 @@ layout: null
       <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
     </svg>
   </a>
+  <script>
+  /* Intro: corner links gather around the title, then glide out to their corners */
+  (function () {
+    var root = document.documentElement;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var title = document.getElementById('title');
+    var links = {
+      'top-left': document.querySelector('.corner-link.top-left'),
+      'top-right': document.querySelector('.corner-link.top-right'),
+      'bottom-left': document.querySelector('.corner-link.bottom-left'),
+      'bottom-right': document.querySelector('.corner-link.bottom-right')
+    };
+    function reveal() { root.classList.remove('corner-intro'); }
+    if (reduce || !title) { reveal(); return; }
+
+    function run() {
+      var t = title.getBoundingClientRect();
+      var gap = 10;
+      Object.keys(links).forEach(function (pos) {
+        var el = links[pos]; if (!el) return;
+        var r = el.getBoundingClientRect();
+        var cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+        var tx = pos.indexOf('left') > -1 ? t.left + r.width / 2 : t.right - r.width / 2;
+        var ty = pos.indexOf('top') === 0 ? t.top - r.height / 2 - gap : t.bottom + r.height / 2 + gap;
+        el.style.transition = 'none';
+        el.style.transform = 'translate(' + (tx - cx) + 'px,' + (ty - cy) + 'px)';
+      });
+      void title.offsetWidth; // lock in the gathered positions
+      reveal();
+      Object.keys(links).forEach(function (pos) {
+        var el = links[pos]; if (!el) return;
+        el.style.transition = 'opacity 0.4s ease';
+        el.style.opacity = '1';
+      });
+      setTimeout(function () {
+        Object.keys(links).forEach(function (pos, i) {
+          var el = links[pos]; if (!el) return;
+          el.style.transition = 'transform 1.1s cubic-bezier(0.65, 0, 0.35, 1) ' + (i * 0.06) + 's, color 0.2s ease';
+          el.style.transform = 'translate(0, 0)';
+        });
+        setTimeout(function () {
+          Object.keys(links).forEach(function (pos) {
+            var el = links[pos]; if (!el) return;
+            el.style.transition = ''; el.style.transform = ''; el.style.opacity = '';
+          });
+        }, 1500);
+      }, 900);
+    }
+    if (document.fonts && document.fonts.ready) { document.fonts.ready.then(run); } else { window.addEventListener('load', run); }
+    setTimeout(reveal, 3000); // safety: never leave links hidden
+  })();
+  </script>
 </body>
 </html>
