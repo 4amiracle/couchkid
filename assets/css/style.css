@@ -278,3 +278,9 @@ a.listen-btn:hover { background: #111; color: #fff; }
   .page-content { padding-top: 2.5rem; }
   .episode-meta { gap: 1rem; }
 }
+
+/* ── 404 page ── */
+.not-found-logo {
+  width: min(180px, 45vw);
+  height: auto;
+}

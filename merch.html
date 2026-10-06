@@ -1,5 +1,7 @@
 ---
 layout: null
+share_title: "merch — couch kid"
+description: "couch kid t-shirts and hoodies in cream and black. 50% of proceeds go to suicide prevention and mental health support."
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -7,6 +9,7 @@ layout: null
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Merch — Couch Kid</title>
+{% include social-meta.html %}
   <link rel="icon" href="{{ '/favicon.ico' | relative_url }}" type="image/x-icon">
   <link rel="apple-touch-icon" href="{{ '/apple-touch-icon.png' | relative_url }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -101,11 +104,27 @@ layout: null
     }
 
     .color-thumb {
+      display: block;
       text-align: center;
       cursor: pointer;
+      background: none;
+      border: 0;
+      padding: 0;
+      font: inherit;
+      color: inherit;
+    }
+
+    .color-thumb:hover img {
+      opacity: 0.8;
+    }
+
+    .color-thumb:focus-visible {
+      outline: 2px solid #C2410C;
+      outline-offset: 4px;
     }
 
     .color-thumb img {
+      display: block;
       width: 80px;
       height: auto;
       border: 3px solid transparent;
@@ -114,7 +133,7 @@ layout: null
       transition: opacity 0.2s ease, border-color 0.2s ease;
     }
 
-    .color-thumb.active img {
+    .color-thumb[aria-pressed="true"] img {
       border-color: #111;
       opacity: 1;
     }
@@ -126,6 +145,7 @@ layout: null
       text-transform: uppercase;
       letter-spacing: 0.08em;
       text-align: center;
+      display: block;
       margin-top: 0.35rem;
     }
 
@@ -286,19 +306,19 @@ layout: null
     </div>
 
     <div class="featured-image">
-      <img src="{{ '/assets/images/merch.png' | relative_url }}" alt="Couch Kid Cream" id="featured-cream" data-color="cream">
-      <img src="{{ '/assets/images/merch-black.png' | relative_url }}" alt="Couch Kid Black" id="featured-black" data-color="black" class="hidden">
+      <img src="{{ '/assets/images/merch.webp' | relative_url }}" alt="Couch Kid t-shirt and hoodie in cream" id="featured-cream" data-color="cream" width="1484" height="1060">
+      <img src="{{ '/assets/images/merch-black.webp' | relative_url }}" alt="Couch Kid t-shirt and hoodie in black" id="featured-black" data-color="black" class="hidden" width="1484" height="1060">
     </div>
 
-    <div class="color-thumbs">
-      <div class="color-thumb active" data-color="cream">
-        <img src="{{ '/assets/images/merch.png' | relative_url }}" alt="Cream">
-        <p class="color-label">Cream</p>
-      </div>
-      <div class="color-thumb" data-color="black">
-        <img src="{{ '/assets/images/merch-black.png' | relative_url }}" alt="Black">
-        <p class="color-label">Black</p>
-      </div>
+    <div class="color-thumbs" role="group" aria-label="Color">
+      <button type="button" class="color-thumb" data-color="cream" aria-pressed="true">
+        <img src="{{ '/assets/images/merch-thumb.webp' | relative_url }}" alt="" width="80" height="57">
+        <span class="color-label">Cream</span>
+      </button>
+      <button type="button" class="color-thumb" data-color="black" aria-pressed="false">
+        <img src="{{ '/assets/images/merch-black-thumb.webp' | relative_url }}" alt="" width="80" height="57">
+        <span class="color-label">Black</span>
+      </button>
     </div>
 
     <form class="order-form" id="order-form">
@@ -367,12 +387,12 @@ layout: null
     var itemSelect = document.querySelector('select[name="item"]');
 
     function selectColor(color) {
-      thumbs.forEach(function (t) { t.classList.remove("active"); });
+      thumbs.forEach(function (t) { t.setAttribute("aria-pressed", "false"); });
       featuredImages.forEach(function (img) { img.classList.add("hidden"); });
 
       var activeThumb = document.querySelector('.color-thumb[data-color="' + color + '"]');
       var activeImg = document.querySelector('.featured-image img[data-color="' + color + '"]');
-      if (activeThumb) activeThumb.classList.add("active");
+      if (activeThumb) activeThumb.setAttribute("aria-pressed", "true");
       if (activeImg) activeImg.classList.remove("hidden");
       colorSelect.value = color;
     }
